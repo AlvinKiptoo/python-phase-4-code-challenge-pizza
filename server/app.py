@@ -21,8 +21,7 @@ db.init_app(app)
 api = Api(app)
 
 # Ensure database tables are created (for SQLite)
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
 # Marshmallow schemas for validation
